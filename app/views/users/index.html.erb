@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<h1>users</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Completion date</th>
+      <th>Completed</th>
+      <th>Test date</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+        <td><%= user.last_name %></td>
+        <td><%= user.zip_code %></td>
+        <td><%= user.city %></td>
+        <td><%= user.state %></td>
+        <td><%= link_to 'Show', user %></td>
+        <td><%= link_to 'Edit', edit_user_path(user) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New user', new_user_path %>
