@@ -75,17 +75,18 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
 
   config.action_mailer.delivery_method = :smtp
-  host = 'frago.us' #replace with your own url
-  config.action_mailer.default_url_options = { host: host }
-
-  # SMTP settings for gmail
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default :charset => "utf-8"
   config.action_mailer.smtp_settings = {
-    :address              => "smtp.gmail.com",
-    :port                 => 587,
-    :user_name            => "mentorship@frago.us",
-    :password             => "homer9721",
-    :authentication       => "plain",
+    :address => "smtp.gmail.com",
+    :port => 587,
+    :domain => 'smtp.gmail.com',
+    #see https://github.com/bkeepers/dotenv to see these variables
+    :user_name => ENV['GMAILUSERNAME'],
+    :password => ENV['GMAILPASSWORD'],
+    :authentication => :login,
     :enable_starttls_auto => true
-  }
+  } 
 
 end

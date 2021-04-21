@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      UserMailer.with(user: @user).new_user_registration.deliver_later
+      UserMailer.with(user: @user).new_user_registration.deliver_now
       redirect_to root_url, notice: "Thank you for signing up!"
     else
       render "new"
