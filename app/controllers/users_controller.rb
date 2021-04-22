@@ -1,4 +1,14 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: %i[ show edit update ]
+  before_action :authorize, only: :index
+
+  def index
+    if current_user.is_admin?
+      @users = User.all
+    else
+      redirect_to welcome_path, notice: "Not Authorized"
+    end
+  end
 
   def show
 
@@ -6,6 +16,10 @@ class UsersController < ApplicationController
 
 	def new
     @user = User.new
+  end
+
+  def edit
+    render "edit"
   end
 
   def create
@@ -19,6 +33,18 @@ class UsersController < ApplicationController
     end
   end
 
+   def update
+    respond_to do |format|
+      if @user.update(user_params)
+        format.html { redirect_to @user, notice: "recruit ##{@user.id} | name: #{@user.first_name} #{@user.last_name} was successfully updated." }
+        format.json { render :show, status: :ok, location: @user }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
 
 
   private
@@ -29,7 +55,27 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation, :admin)
+      params.require(:user).permit(
+        :first_name,
+        :last_name,
+        :email,
+        :password,
+        :password_confirmation,
+        :admin,
+        :zip_code,
+        :city,
+        :state,
+        :country,
+        :branch_of_service,
+        :year_joined,
+        :year_separated,
+        :twitter_profile_url,
+        :linked_in_profile_url,
+        :github_profile_url,
+        :prework_link,
+        :prework_repo_link,
+        :role
+      )
     end
     
 end

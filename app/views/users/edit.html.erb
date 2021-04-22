@@ -1,0 +1,96 @@
+<%= form_with(model: @user, local: true) do |form| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :first_name %>
+    <%= form.text_field :first_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :last_name %>
+    <%= form.text_field :last_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :zip_code %>
+    <%= form.text_field :zip_code %>
+  </div>
+
+  <div class="field">
+    <%= form.label :city %>
+    <%= form.text_field :city %>
+  </div>
+
+  <div class="field">
+    <%= form.label :state %>
+    <%= form.text_field :state %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :country %>
+    <%= form.text_field :country %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :branch_of_service %>
+    <%= form.text_field :branch_of_service %>
+  </div>
+
+  <div class="field">
+    <%= form.label :year_joined %>
+    <%= form.text_field :year_joined %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :year_separated %>
+    <%= form.text_field :year_separated %>
+  </div>
+
+  <div class="field">
+    <%= form.label :twitter_profile_url %>
+    <%= form.text_field :twitter_profile_url %>
+  </div>
+
+  <div class="field">
+    <%= form.label :linked_in_profile_url %>
+    <%= form.text_field :linked_in_profile_url %>
+  </div>
+
+  <div class="field">
+    <%= form.label :github_user_name %>
+    <%= form.text_field :github_user_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :pre_work_link %>
+    <%= form.text_field :pre_work_link %>
+  </div>
+
+  <div class="field">
+    <%= form.label :pre_work_repo %>
+    <%= form.text_field :pre_work_repo %>
+  </div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<%= link_to 'Show', @user %> |
+<%= link_to 'Back', users_path %>
