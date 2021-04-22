@@ -77,5 +77,4 @@ class UsersController < ApplicationController
         :role
       )
     end
-    
 end
