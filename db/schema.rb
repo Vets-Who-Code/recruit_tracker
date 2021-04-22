@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_14_151640) do
+ActiveRecord::Schema.define(version: 2021_04_21_183039) do
 
   create_table "users", force: :cascade do |t|
     t.string "email"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 2021_04_14_151640) do
     t.string "github_profile_url"
     t.string "prework_link"
     t.string "prework_repo_link"
+    t.integer "role", default: 0
   end
 
 end
