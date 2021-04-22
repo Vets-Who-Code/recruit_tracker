@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get 'signup', to: 'users#new', as: 'signup'
-  get 'profile', to: 'users#show', as: 'profile'
+  get 'profile/:id', to: 'users#show', as: 'profile'
   # get 'profile', to: 'users#show', as: 'profile'
   
   get 'login', to: 'sessions#new', as: 'login'
@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   resources :users
 
-  root to: "sessions#new"
+  root to: "sessions#welcome"
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

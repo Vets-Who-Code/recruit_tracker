@@ -3,7 +3,11 @@ class UsersController < ApplicationController
   before_action :authorize, only: :index
 
   def index
-    @users = User.all
+    if current_user.is_admin?
+      @users = User.all
+    else
+      redirect_to welcome_path, notice: "Not Authorized"
+    end
   end
 
   def show
@@ -68,7 +72,8 @@ class UsersController < ApplicationController
         :linked_in_profile_url,
         :github_profile_url,
         :prework_link,
-        :prework_repo_link
+        :prework_repo_link,
+        :role
       )
     end
     
