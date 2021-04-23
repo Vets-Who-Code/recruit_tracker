@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   resources :users
 
+  post 'applied_to_submitted', to: 'users#applied_to_submitted'
+
   root to: "sessions#welcome"
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
