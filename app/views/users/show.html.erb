@@ -79,3 +79,4 @@ This is the show view
 
 <%# <%= link_to 'Edit', edit_user_path(@user) %>
 <%= link_to 'Back to list of Recruits', users_path %>
+<%= button_to 'Submit for Review', applied_to_submitted_path(id: current_user.id) , method: :post %>

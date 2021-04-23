@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ show edit update ]
+  before_action :set_user, only: %i[ show edit update applied_to_submitted]
   before_action :authorize, only: :index
 
   def index
@@ -52,6 +52,12 @@ class UsersController < ApplicationController
     end
   end
 
+  #change users profile status from applied to submitted
+  def applied_to_submitted
+    @user.profile_status = 1
+    # UserMailer.with(user: @user).new_user_registration.deliver_now
+  end
+
 
 
   private
@@ -81,7 +87,8 @@ class UsersController < ApplicationController
         :github_profile_url,
         :prework_link,
         :prework_repo_link,
-        :role
+        :role,
+        :profile_status
       )
     end
 end
