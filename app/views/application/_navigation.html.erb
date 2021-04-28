@@ -1,7 +1,9 @@
 <p>
 	<% if current_user %>
 		Logged in as <%= current_user.first_name %>. |
-    <%= link_to "List of Recruits", users_path %> |
+    <% if current_user.is_admin? %>
+      <%= link_to "List of Recruits", users_path %> |
+    <% end %>
     <%= link_to "Profile", profile_path(id: current_user.id) %> |
 		<%= link_to "Log Out", logout_path %>
 	<% else %>
