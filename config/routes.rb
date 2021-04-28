@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  # get 'password_resets/new'
   get 'signup', to: 'users#new', as: 'signup'
   get 'profile/:id', to: 'users#show', as: 'profile'
   # get 'profile', to: 'users#show', as: 'profile'
@@ -8,11 +9,14 @@ Rails.application.routes.draw do
   get 'logout', to: 'sessions#destroy', as: 'logout'
   get 'welcome', to: 'sessions#welcome', as: 'welcome'
 
-  resources :users
 
   post 'applied_to_submitted', to: 'users#applied_to_submitted'
 
   root to: "sessions#welcome"
+
+
+  resources :users
+  resources :password_resets
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
