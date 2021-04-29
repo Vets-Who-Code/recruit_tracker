@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get 'welcome', to: 'sessions#welcome', as: 'welcome'
 
 
-  post 'applied_to_submitted', to: 'users#applied_to_submitted'
+  post 'change_profile_status', to: 'users#change_profile_status'
 
   root to: "sessions#welcome"
 

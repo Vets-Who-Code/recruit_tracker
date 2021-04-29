@@ -77,19 +77,19 @@ This is the show view
   <%= @user.prework_repo_link %>
 </p>
 
-<%# <%= link_to 'Edit', edit_user_path(@user) %>
-
-
-
-<%# <% add drop-down menu so Admin has options IOT change profile_status  %>
-<%# and this functionality needs a button to change appropriate status %>
-<%# wire one up and then other will follow %>
-
-<%# <%= select_tag 'User', options_from_collection_for_select(:current_user, 'id', 'profile_status')%>
-
+<p>
+<%= link_to 'Edit', edit_user_path(@user) %>
+</p>
 
 <% if current_user.is_admin? %>
+  <p>
+  <%= form_tag change_profile_status_path(id: @user.id), method: :post do %>
+    <%= select_tag :status, options_for_select(User.profile_statuses.map {|k, v| [k.humanize.capitalize, v]}) %>
+    <%= submit_tag "Change Status" %>
+  <% end %>
+  </p>
   <%= link_to 'Back to list of Recruits', users_path %>
 <% else %>
-  <%= button_to 'Submit for Review', applied_to_submitted_path(id: current_user.id) , method: :post %>
+  Your current status is <%= @user.profile_status %>
+  <%= button_to 'Submit for Review', change_profile_status_path(id: @user.id, status: 1) , method: :post %>
 <% end %>

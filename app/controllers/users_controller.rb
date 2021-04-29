@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ show edit update applied_to_submitted]
+  before_action :set_user, only: %i[ show edit update change_profile_status]
   before_action :authorize, only: :index
 
   def index
@@ -52,13 +52,16 @@ class UsersController < ApplicationController
     end
   end
 
-  #change users profile status from applied to submitted
-  def applied_to_submitted
-    @user.profile_status = 1
-    # UserMailer.with(user: @user).new_user_registration.deliver_now
+  def change_profile_status
+    new_status = params[:status]
+    @user.profile_status = new_status.to_i
+    @user.save
+    if current_user.is_admin?
+      redirect_to users_path, notice: "Status for " + @user.first_name + " changed to " +  User.profile_statuses.key(new_status.to_i)
+    else
+      redirect_to root_url, notice: "Status for " + @user.first_name + " changed to " +  User.profile_statuses.key(new_status.to_i)
+    end
   end
-
-
 
   private
     # Use callbacks to share common setup or constraints between actions.
