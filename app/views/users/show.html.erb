@@ -81,7 +81,7 @@ This is the show view
 <%= link_to 'Edit', edit_user_path(@user) %>
 </p>
 
-<% if current_user.is_admin? %>
+<% if current_user.is_admin? && @user != current_user %>
   <p>
   <%= form_tag change_profile_status_path(id: @user.id), method: :post do %>
     <%= select_tag :status, options_for_select(User.profile_statuses.map {|k, v| [k.humanize.capitalize, v]}) %>
@@ -90,6 +90,8 @@ This is the show view
   </p>
   <%= link_to 'Back to list of Recruits', users_path %>
 <% else %>
-  Your current status is <%= @user.profile_status %>
-  <%= button_to 'Submit for Review', change_profile_status_path(id: @user.id, status: 1) , method: :post %>
+  <% if !current_user.is_admin? %>
+    Your current status is <%= @user.profile_status %>
+    <%= button_to 'Submit for Review', change_profile_status_path(id: @user.id, status: 1) , method: :post %>
+  <% end %>
 <% end %>
