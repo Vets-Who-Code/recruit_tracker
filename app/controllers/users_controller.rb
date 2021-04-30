@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   def index
     if current_user.is_admin?
-      @users = User.all
+      @users = User.where.not role: 5
     else
       redirect_to welcome_path, notice: "Not Authorized"
     end
