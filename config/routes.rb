@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :cohorts
   # get 'password_resets/new'
   get 'signup', to: 'users#new', as: 'signup'
   get 'profile/:id', to: 'users#show', as: 'profile'
