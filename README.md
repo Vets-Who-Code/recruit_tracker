@@ -8,4 +8,4 @@ Testing: run "rails test test/models/user_test.rb" to run an indivigual test
 User Roles: Roles will correspond to user types: admin, student, mentor, ect. 0 is most restrictive (student);
 5 is most powerful (admins)
 
-User profile status: used to track profile status of students 0=default 1=submitted for review 2=
+See requirements here: https://docs.google.com/document/d/12xfq87nB4wL5cHRbpgwGNQEEaqPjTltBfpE6n7HeLXE/edit?usp=sharing
