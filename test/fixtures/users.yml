@@ -1,9 +1,15 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+#load fixtures with rails db:fixtures:load RAILS_ENV=test
+#load test console with rails c -e test
 
 one:
-  email: MyString
-  password_digest: MyString
+  email: "user@test.com"
+  password_digest: "test"
+  first_name: "John"
+  last_name: "Smith"
 
 two:
-  email: MyString
-  password_digest: MyString
+  email: "user2@test.com"
+  password_digest: "test"
+  first_name: "Jan"
+  last_name: "Doe"
