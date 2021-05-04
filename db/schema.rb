@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_21_183039) do
+ActiveRecord::Schema.define(version: 2021_04_28_140221) do
 
   create_table "users", force: :cascade do |t|
     t.string "email"
@@ -32,6 +32,10 @@ ActiveRecord::Schema.define(version: 2021_04_21_183039) do
     t.string "prework_link"
     t.string "prework_repo_link"
     t.integer "role", default: 0
+    t.integer "profile_status", default: 0
+    t.string "auth_token"
+    t.string "password_reset_token"
+    t.datetime "password_reset_sent_at"
   end
 
 end

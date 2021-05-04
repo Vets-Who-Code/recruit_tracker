@@ -1,17 +1,17 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ show edit update ]
+  before_action :set_user, only: %i[ show edit update change_profile_status]
   before_action :authorize, only: :index
 
   def index
     if current_user.is_admin?
-      @users = User.all
+      @users = User.where.not role: 5
     else
       redirect_to welcome_path, notice: "Not Authorized"
     end
   end
 
   def show
-
+    
   end
 
 	def new
@@ -22,11 +22,18 @@ class UsersController < ApplicationController
     render "edit"
   end
 
+    #adding destroy User
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to users_path
+  end
+
   def create
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      UserMailer.with(user: @user).new_user_registration.deliver_now
+      # UserMailer.with(user: @user).new_user_registration.deliver_now
       redirect_to root_url, notice: "Thank you for signing up!"
     else
       render "new"
@@ -45,7 +52,16 @@ class UsersController < ApplicationController
     end
   end
 
-
+  def change_profile_status
+    new_status = params[:status]
+    @user.profile_status = new_status.to_i
+    @user.save
+    if current_user.is_admin?
+      redirect_to users_path, notice: "Status for " + @user.first_name + " changed to " +  User.profile_statuses.key(new_status.to_i)
+    else
+      redirect_to root_url, notice: "Status for " + @user.first_name + " changed to " +  User.profile_statuses.key(new_status.to_i)
+    end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -74,7 +90,8 @@ class UsersController < ApplicationController
         :github_profile_url,
         :prework_link,
         :prework_repo_link,
-        :role
+        :role,
+        :profile_status
       )
     end
 end
