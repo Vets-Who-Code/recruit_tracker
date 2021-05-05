@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_28_140221) do
+ActiveRecord::Schema.define(version: 2021_05_04_182422) do
+
+  create_table "cohorts", force: :cascade do |t|
+    t.string "name"
+    t.date "start_date"
+    t.date "end_date"
+    t.text "description"
+    t.boolean "active", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email"
@@ -36,6 +46,7 @@ ActiveRecord::Schema.define(version: 2021_04_28_140221) do
     t.string "auth_token"
     t.string "password_reset_token"
     t.datetime "password_reset_sent_at"
+    t.integer "cohort_id"
   end
 
 end

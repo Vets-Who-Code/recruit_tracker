@@ -3,6 +3,8 @@ class User < ApplicationRecord
 
   has_secure_password
 
+  belongs_to :cohort
+
   #validations section
   validates :first_name, :last_name, presence: true
   validates :email, presence: true, uniqueness: true
@@ -29,6 +31,11 @@ class User < ApplicationRecord
     begin
       self[column] = SecureRandom.urlsafe_base64
     end while User.exists?(column => self[column])
+  end
+
+  #TODO should only ever be one active cohort
+  def self.get_current_cohort
+    Cohort.where(active: true).last.users
   end
 
 end
