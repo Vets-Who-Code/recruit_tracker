@@ -10,3 +10,5 @@ u=User.new( email: 'admin@test.com', first_name: 'John', last_name: 'Doe', passw
 u.save
 u=User.new( email: 'recruit@test.com', first_name: 'Mary', last_name: 'Smith', password: 'test')
 u.save
+c=Cohort.new(name: 'Newbs Cohort', start_date: Date.today, end_date: Date.tomorrow, description: 'Cohort fom seed file', active: true)
+c.save

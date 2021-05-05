@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   def index
     if current_user.is_admin?
-      @users = User.where.not role: 5
+      @users = User.get_current_cohort
     else
       redirect_to welcome_path, notice: "Not Authorized"
     end
@@ -31,6 +31,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @user.cohort = Cohort.where(active: true).first
     if @user.save
       session[:user_id] = @user.id
       UserMailer.with(user: @user).new_user_registration.deliver_now
