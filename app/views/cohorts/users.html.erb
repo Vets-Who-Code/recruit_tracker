@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Recruits(<%= Cohort.where(active: true).last.name %>)</h1>
+<h1>Recruits(<%= @cohort.name %>)</h1>
 
 <table>
   <thead>

@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :cohorts
+  resources :cohorts do
+    member do
+      get :users
+    end
+  end
   # get 'password_resets/new'
   get 'signup', to: 'users#new', as: 'signup'
   get 'profile/:id', to: 'users#show', as: 'profile'
@@ -17,6 +21,7 @@ Rails.application.routes.draw do
 
 
   resources :users
+
   resources :password_resets
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
