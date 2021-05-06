@@ -1,5 +1,5 @@
 class CohortsController < ApplicationController
-  before_action :set_cohort, only: %i[ show edit update destroy ]
+  before_action :set_cohort, only: %i[ show edit update destroy users ]
   before_action :authorize
 
   # GET /cohorts or /cohorts.json
@@ -55,6 +55,10 @@ class CohortsController < ApplicationController
       format.html { redirect_to cohorts_url, notice: "Cohort was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def users
+    @users = @cohort.users
   end
 
   private
