@@ -6,9 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-u=User.new( email: 'admin@test.com', first_name: 'John', last_name: 'Doe', password: 'test', role: 5)
-u.save
-u=User.new( email: 'recruit@test.com', first_name: 'Mary', last_name: 'Smith', password: 'test')
-u.save
 c=Cohort.new(name: 'Newbs Cohort', start_date: Date.today, end_date: Date.tomorrow, description: 'Cohort fom seed file', active: true)
-c.save
+c.save!
+u=User.new( email: 'admin@test.com', first_name: 'John', last_name: 'Doe', password: 'Test1234!', role: 5, cohort_id: c.id)
+u.save!
+u=User.new( email: 'recruit@test.com', first_name: 'Mary', last_name: 'Smith', password: 'Test1234!', cohort_id: c.id)
+u.save!
