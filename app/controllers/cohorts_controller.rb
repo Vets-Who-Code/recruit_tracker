@@ -1,6 +1,7 @@
 class CohortsController < ApplicationController
   before_action :set_cohort, only: %i[ show edit update destroy users ]
   before_action :authorize
+  before_action :application_admin
 
   # GET /cohorts or /cohorts.json
   def index

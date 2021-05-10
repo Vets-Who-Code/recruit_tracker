@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 2021_05_04_182422) do
     t.string "github_profile_url"
     t.string "prework_link"
     t.string "prework_repo_link"
-    t.integer "role", default: 0
+    t.boolean "admin", default: false
     t.integer "profile_status", default: 0
     t.string "auth_token"
     t.string "password_reset_token"

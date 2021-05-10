@@ -17,7 +17,7 @@ class User < ApplicationRecord
   enum profile_status: {applied: 0, submitted: 1, under_review: 2, accepted: 3, rejected: 4, needs_more_work: 5}
 
   def is_admin?
-  	role == 5
+  	admin == true
   end
 
   def send_password_reset
