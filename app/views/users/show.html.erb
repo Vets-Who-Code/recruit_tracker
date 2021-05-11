@@ -89,7 +89,8 @@ This is the show view
 <% if current_user.is_admin? && @user != current_user %>
   <p>
   <%= form_tag change_profile_status_path(id: @user.id), method: :post do %>
-    <%= select_tag :status, options_for_select(User.profile_statuses.map {|k, v| [k.humanize.capitalize, v]}) %>
+    <%= select_tag :status,
+      options_for_select(User.profile_statuses.map {|key, value| [key.titleize, User.profile_statuses.key(value)]}, @user.profile_status) %>
     <%= submit_tag "Change Status" %>
   <% end %>
   </p>

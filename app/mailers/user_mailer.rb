@@ -10,4 +10,12 @@ class UserMailer < ApplicationMailer
   	@user = user
   	mail :to => user.email, :subject => "Password Reset"
 	end
+
+	def change_profile_status(user, new_status)
+  	@user = user
+  	@new_status = new_status
+  	mail :to => @user.email, :subject => "Your status has changed"
+  	#until we come up with a better way to do this we are just going to hard code the recruit managers email here
+  	mail :to => 'marklocklear@gmail.com', :subject => "A recruits status has changed"
+	end
 end
