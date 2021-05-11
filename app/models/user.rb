@@ -33,9 +33,8 @@ class User < ApplicationRecord
     end while User.exists?(column => self[column])
   end
 
-  #TODO should only ever be one active cohort
   def self.get_current_cohort
-    Cohort.where(active: true).last.users
+    Cohort.where(active: true).last.users.where(admin: false)
   end
 
 end
