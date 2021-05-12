@@ -88,7 +88,8 @@
   <p>
   <%= form_tag change_profile_status_path(id: @user.id), method: :post do %>
     <%= select_tag :status,
-      options_for_select(User.profile_statuses.map {|key, value| [key.titleize, User.profile_statuses.key(value)]}, @user.profile_status) %>
+      options_for_select(User.profile_statuses.map {|key, value| [key.titleize, User.profile_statuses.key(value)]}, @user.profile_status) %><br>
+      <textarea name="comments" autocomplete="off" placeholder="Optional text to be emailed to recruit"></textarea>
     <%= submit_tag "Change Status" %>
   <% end %>
   </p>
