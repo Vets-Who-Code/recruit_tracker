@@ -27,7 +27,7 @@
         <td><%= user.state %></td>
         <td><%= user.profile_status %></td>
         <td><%= user.cohort.name %></td>
-        <td><%= link_to 'Show', user %></td>
+        <td><%= link_to 'Review/Change Status', user %></td>
         <td><%= link_to 'Edit Recruit information', edit_user_path(user) %></td>
         <td><%= link_to 'Delete Recruit', user_path(user),
                           method: :delete,
