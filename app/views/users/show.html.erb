@@ -1,5 +1,3 @@
-This is the show view
-
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -89,7 +87,8 @@ This is the show view
 <% if current_user.is_admin? && @user != current_user %>
   <p>
   <%= form_tag change_profile_status_path(id: @user.id), method: :post do %>
-    <%= select_tag :status, options_for_select(User.profile_statuses.map {|k, v| [k.humanize.capitalize, v]}) %>
+    <%= select_tag :status,
+      options_for_select(User.profile_statuses.map {|key, value| [key.titleize, User.profile_statuses.key(value)]}, @user.profile_status) %>
     <%= submit_tag "Change Status" %>
   <% end %>
   </p>
@@ -97,6 +96,6 @@ This is the show view
 <% else %>
   <% if !current_user.is_admin? %>
     Your current status is <%= @user.profile_status %>
-    <%= button_to 'Submit for Review', change_profile_status_path(id: @user.id, status: 1) , method: :post %>
+    <%= button_to 'Submit for Review', change_profile_status_path(id: @user.id, status: 'submitted') , method: :post %>
   <% end %>
 <% end %>

@@ -44,7 +44,7 @@ class UsersController < ApplicationController
    def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: "recruit ##{@user.id} | name: #{@user.first_name} #{@user.last_name} was successfully updated." }
+        format.html { redirect_to @user, notice: "Your profile has been successfully updated." }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -55,13 +55,12 @@ class UsersController < ApplicationController
 
   def change_profile_status
     new_status = params[:status]
-    @user.profile_status = new_status.to_i
-    @user.save
-    if current_user.is_admin?
-      redirect_to users_path, notice: "Status for " + @user.first_name + " changed to " +  User.profile_statuses.key(new_status.to_i)
-    else
-      redirect_to root_url, notice: "Status for " + @user.first_name + " changed to " +  User.profile_statuses.key(new_status.to_i)
-    end
+    @user.update_attribute(:profile_status, new_status)
+
+    #send email about profile status change to admin and recruit 
+    UserMailer.with(user: @user, new_status: new_status).change_profile_status(@user, new_status).deliver_now
+
+    redirect_to root_url, notice: "Status for " + @user.first_name + " changed to " +  new_status
   end
 
   private
