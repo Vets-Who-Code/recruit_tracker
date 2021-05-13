@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2021_05_04_182422) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "cohorts", force: :cascade do |t|
     t.string "name"
     t.date "start_date"
