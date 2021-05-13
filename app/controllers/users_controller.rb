@@ -55,10 +55,11 @@ class UsersController < ApplicationController
 
   def change_profile_status
     new_status = params[:status]
+    comments = params[:comments]
     @user.update_attribute(:profile_status, new_status)
 
     #send email about profile status change to admin and recruit 
-    UserMailer.with(user: @user, new_status: new_status).change_profile_status(@user, new_status).deliver_now
+    UserMailer.change_profile_status(@user, new_status, comments).deliver_now
 
     redirect_to root_url, notice: "Status for " + @user.first_name + " changed to " +  new_status
   end
