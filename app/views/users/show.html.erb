@@ -97,6 +97,7 @@
 <% else %>
   <% if !current_user.is_admin? %>
     Your current status is <%= @user.profile_status %>
-    <%= button_to 'Submit for Review', change_profile_status_path(id: @user.id, status: 'submitted') , method: :post %>
+    <%= button_to 'Submit for Review', change_profile_status_path(id: @user.id, status: 'submitted') , method: :post,
+     data: { confirm: 'Please ensure all of your prework is complete before proceding. Click OK if you are sure.' }  %>
   <% end %>
 <% end %>

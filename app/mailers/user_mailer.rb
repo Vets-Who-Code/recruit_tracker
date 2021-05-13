@@ -1,5 +1,6 @@
 # Preview all emails at http://localhost:3000/rails/mailers/user_mailer
 class UserMailer < ApplicationMailer
+  default from: 'noreply@vetswhocode.io'
 	#until we come up with a better way to do this we are just going to hard code the recruit managers email here
 	$current_recruit_administrator = ENV['RECRUIT_MANAGER']
 
