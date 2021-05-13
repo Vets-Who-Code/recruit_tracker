@@ -7,9 +7,10 @@
   <body>
     <p>Hi <%= @user.first_name %> your profile status in RecruitTracker has changed to <b><%= @new_status %></b></p>
     <% if @comments %>
+      Additional comments from recruit manager:<br>
     	<%= @comments %>
     <% end %>
-    <p>Contact your VWC liason if you have any questions.</p>
+    <p>Contact your recruit manager if you have any questions.</p>
     <p>
   </body>
 </html>
