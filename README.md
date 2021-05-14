@@ -1,4 +1,5 @@
 # README
+An administrative app used by https://vetswhocode.io/ volunteers to manage the application process for its students.
 
 ## To set up locally:
 - clone repo and cd into the app
