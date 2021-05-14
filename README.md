@@ -1,9 +1,11 @@
 # README
 
 ## To set up locally:
-- clone repo
-- rails db:migrate
-- rails db:seed (see db/seed.rb for users and passwords)
+- clone repo and cd into the app
+- run **bundle**
+- run **yarn**
+- run **rails db:migrate**
+- run **rails db:seed** (see db/seed.rb for users and passwords)
 
 ## Testing:
 - run "rails test test/models/user_test.rb" to run an indivigual test
