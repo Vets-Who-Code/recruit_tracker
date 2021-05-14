@@ -62,6 +62,8 @@ GEM
       zeitwerk (~> 2.3)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
+    audited (4.10.0)
+      activerecord (>= 4.2, < 6.2)
     bcrypt (3.1.16)
     bindex (0.8.1)
     bootsnap (1.7.5)
@@ -232,6 +234,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  audited (~> 4.9)
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.4)
   byebug

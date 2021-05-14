@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  #audit user activity
+  audited
+
   before_create { generate_token(:auth_token) }
 
   has_secure_password
