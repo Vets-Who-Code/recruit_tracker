@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>Hi <%= @user.first_name %> your cohort in RecruitTracker has changed to <b><%= Cohort.find(@new_cohort).name %></b></p>
+    <p>Contact your recruit manager if you have any questions.</p>
+    <p>
+  </body>
+</html>

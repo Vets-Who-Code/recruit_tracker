@@ -86,10 +86,18 @@
     <%= form.text_field :prework_repo_link %>
   </div>
 
-
   <div class="actions">
     <%= form.submit %>
   </div>
+<% end %>
+
+<% if current_user.is_admin? && @user != current_user %>
+  <p>
+  <%= form_tag change_user_cohort_path(id: @user.id), method: :post do %>
+    <%= select_tag :new_cohort, options_from_collection_for_select(Cohort.all, 'id', 'name', @user.cohort.id) %><br>
+    <%= submit_tag "Change Cohort" %>
+  <% end %>
+  </p>
 <% end %>
 
 <%= link_to 'Show', @user %> |
