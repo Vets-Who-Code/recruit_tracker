@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ show edit update change_profile_status]
+  before_action :set_user, only: %i[ show edit update change_profile_status change_user_cohort]
   before_action :authorize, only: :index
 
   def index
@@ -62,6 +62,15 @@ class UsersController < ApplicationController
     UserMailer.change_profile_status(@user, new_status, comments).deliver_now
 
     redirect_to root_url, notice: "Status for " + @user.first_name + " changed to " +  new_status
+  end
+
+  def change_user_cohort
+    new_cohort = params[:new_cohort]
+    @user.update_attribute(:cohort_id, new_cohort)
+    UserMailer.change_user_cohort(@user, new_cohort).deliver_now
+
+    redirect_to root_url,
+        notice: "Status for " + @user.first_name + " changed to " +  Cohort.find(new_cohort).name
   end
 
   private

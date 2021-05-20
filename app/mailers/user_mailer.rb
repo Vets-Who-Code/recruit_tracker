@@ -21,4 +21,10 @@ class UserMailer < ApplicationMailer
   	@comments = comments
   	mail to: [user.email, $current_recruit_administrator], :subject => "Your status has changed"
 	end
+
+	def change_user_cohort(user, new_cohort)
+		@user = user
+		@new_cohort = new_cohort
+  	mail to: [user.email, $current_recruit_administrator], :subject => "Your cohort has changed"
+	end
 end

@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
 
   post 'change_profile_status', to: 'users#change_profile_status'
+  post 'change_user_cohort', to: 'users#change_user_cohort'
 
   root to: "sessions#welcome"
 
