@@ -2,7 +2,7 @@
   <a href=https://github.com/Vets-Who-Code/recruit_tracker/blob/main/LICENSE>
     <img src=https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square alt="License: MIT" />
   </a>
-  <a href=https://github.com/Vets-Who-Code/vwc-site/blob/master/.github/contributing.md>
+  <a href=https://github.com/Vets-Who-Code/recruit_tracker/blob/main/contributing.md>
     <img src=https://img.shields.io/badge/contributions-welcome-orange.svg?style=flat-square alt="Contributions Welcome" />
   </a>
 </p>
